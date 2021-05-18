@@ -1,0 +1,16 @@
+<launch>
+	<arg name="model" />
+	<param name="robot_description" textfile="$(find robots_3D_modelling_and_visualization)/urdf/four_wheel_robot.urdf" />
+
+<!-- Setting gui parameter to true for display joint slider, for getting joint control -->
+	<param name="use_gui" value="true"/>
+
+<!-- Starting Joint state publisher node which will publish the joint values -->
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+<!-- Starting robot state publish which will publish current robot joint states using tf -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+<!-- Launch visualization in rviz -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find robots_3D_modelling_and_visualization)/urdf.rviz" required="true" />
+</launch>
